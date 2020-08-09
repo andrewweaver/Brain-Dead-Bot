@@ -14,7 +14,7 @@
     "create-env": "printenv > .env",
     "gcp-build": "tsc -p .",
     "deploy": "gcloud app deploy",
-    "start": "node index.js",
+    "start": "node index.js"
   },
   "dependencies": {
     "@types/node": "^14.0.27",
