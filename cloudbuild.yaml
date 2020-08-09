@@ -7,6 +7,6 @@ steps:
   args: ["run", "create-env"]
   env:
     - 'DISCORD_BOT_TOKEN=${_DISCORD_BOT_TOKEN}'
-- name: 'gcr.io/cloud-builders/npm'
-  args: ["run", "deploy"]
+- name: "gcr.io/cloud-builders/gcloud"
+  args: ["app", "deploy"]
 timeout: "1600s"
