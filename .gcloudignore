@@ -1,0 +1,11 @@
+# Exclude bin directory
+bin/
+
+# Exclude environment variables
+.env
+
+# Exclude compiled .js files
+*.js
+
+# Exclude dependencies
+node_modules/

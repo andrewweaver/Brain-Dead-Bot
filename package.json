@@ -1,0 +1,26 @@
+{
+  "name": "brain-dead-bot",
+  "description": "Another Discord Bot",
+  "version": "0.0.1",
+  "private": true,
+  "author": "Andrew Weaver (https://github.com/andrewweaver)",
+  "license": "ISC",
+  "main": "index.ts",
+  "engines": {
+    "node": ">=11.0.0"
+  },
+  "scripts": {
+    "start": "tsc --outDir bin -p . && node bin/index.js",
+    "create-env": "printenv > .env",
+    "gcp-build": "tsc -p .",
+    "deploy": "gcloud app deploy"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "@types/node": "^14.0.27",
+    "discord.js": "^12.2.0"
+  }
+}
