@@ -1,18 +1,44 @@
 const Discord = require("discord.js");
-const client = new Discord.Client();
-import { handleDiscordMessage } from './discord/message-handler';
+const fs = require('fs');
 require('dotenv').config()
 
 // Discord token, stored as an environment variable
 const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN
+const BOT_COMMAND_PREFIX = "!"
 
-// Handle all of the message requests from Discord
-client.on('message', handleDiscordMessage);
+// Initialize the Discord client
+const Client = new Discord.Client();
+
+// Configure Discord commands
+Client.commands = new Discord.Collection();
+const commandFiles = fs.readdirSync(__dirname + '/commands').filter(file => file.endsWith('.js'));
+for (const file of commandFiles){
+    const command = require(`./commands/${file}`);
+    Client.commands.set(command.name, command)
+}
 
 // When the Discord bot is started, print confirmation message
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag} using token: ${DISCORD_BOT_TOKEN}`)
+Client.once('ready', () => {
+    console.log(`Logged in as ${Client.user.tag} using token: ${DISCORD_BOT_TOKEN}`)
 })
 
+// Handle all of the message requests from Discord
+Client.on('message', (message) => {
+    if (!message.content.startsWith(BOT_COMMAND_PREFIX) || message.author.bot) return;
+
+    // Destructure the message into a command and it's arguments
+    const args = message.content.slice(BOT_COMMAND_PREFIX.length).trim().split(/ +/);
+    const command = args.shift().toLowerCase();
+
+    // Identify and execute the proper command
+    switch (command) {
+        case 'ping':
+            Client.commands.get('ping').execute(message, args);
+            break;
+        default:
+            message.reply("I don't reconize that command.");
+    }
+});
+
 // Start the Discord Bot
-export const startDiscordBot = async () => { client.login(DISCORD_BOT_TOKEN); };
+export const startDiscordBot = async () => { await Client.login(DISCORD_BOT_TOKEN); };
