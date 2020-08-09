@@ -15,12 +15,10 @@
     "gcp-build": "tsc -p .",
     "deploy": "gcloud app deploy"
   },
-  "devDependencies": {
-    "dotenv": "^8.2.0",
-    "typescript": "^3.9.7"
-  },
   "dependencies": {
     "@types/node": "^14.0.27",
-    "discord.js": "^12.2.0"
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "typescript": "^3.9.7"
   }
 }

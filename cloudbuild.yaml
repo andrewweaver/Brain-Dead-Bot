@@ -1,15 +1,12 @@
 steps:
-- name: node:12.0.0
-  entrypoint: npm
+- name: 'gcr.io/cloud-builders/npm'
   args: ["install"]
-- name: node:12.0.0
-  entrypoint: npm
+- name: 'gcr.io/cloud-builders/npm'
   args: ["run", "gcp-build"]
-- name: node:12.0.0
-  entrypoint: npm
+- name: 'gcr.io/cloud-builders/npm'
   args: ["run", "create-env"]
   env:
     - 'DISCORD_BOT_TOKEN=${_DISCORD_BOT_TOKEN}'
-- name: "gcr.io/cloud-builders/gcloud"
-  args: ["app", "deploy"]
+- name: 'gcr.io/cloud-builders/npm'
+  args: ["run", "deploy"]
 timeout: "1600s"
