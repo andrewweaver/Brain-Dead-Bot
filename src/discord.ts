@@ -30,13 +30,13 @@ Client.on('message', (message) => {
     const args = message.content.slice(BOT_COMMAND_PREFIX.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
 
-    // Identify and execute the proper command
-    switch (command) {
-        case 'ping':
-            Client.commands.get('ping').execute(message, args);
-            break;
-        default:
-            message.reply("I don't reconize that command.");
+    // Check to see if the command exists
+    if (Client.commands.get(command)){
+        // Execute the command
+        Client.commands.get(command).execute(message, args);
+    } else {
+        // Command doesn't exist, notify message sender of invalid command
+        message.reply("I don't recognize that command.");
     }
 });
 
