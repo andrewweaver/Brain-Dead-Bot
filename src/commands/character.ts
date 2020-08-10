@@ -24,11 +24,10 @@ module.exports = {
                 `[Raider IO](https://raider.io/characters/us/${character.realm.name.toLowerCase()}/${character.name.toLowerCase()}) | ` +
                 `[WoW Progress](https://www.wowprogress.com/character/us/${character.realm.name.toLowerCase()}/${character.name.toLowerCase()}) \n` +
                 `**Avg. ilvl:** ${character.average_item_level} | **Equipped ilvl:** ${character.equipped_item_level}`
-                
             );
 
             raids.forEach(raid => {
-                embed.addField(raid.name, raiderIO.raid_progression[raid.slug].summary);
+                embed.addField(raid.name, `${raiderIO.raid_progression[raid.slug].summary} - ${getAchievementDate(raid.slug, raiderIO.raid_achievement_curve)}`);
             })
             
         //message.channel.send('`' + JSON.stringify(characterProfile)+ '`');
@@ -79,3 +78,23 @@ const getClassColor = (charClass) => {
             return "#161616"
     }
 };
+
+const getAchievementDate = (slug, raidAchievments) => {
+    for (let i=0; i < raidAchievments.length(); i++){
+   
+    }
+    // return raidAchievments.forEach(achievement => {
+    //     if (achievement.raid == slug){
+    //         console.log(achievement)
+    //         if (achievement.cutting_edge){
+    //             console.log('CE')
+    //             return achievement.cutting_edge;
+    //         }
+    //         if (achievement.aotc){
+    //             console.log("AOTC")
+    //             return achievement.aotc;
+    //         }
+    //         return;
+    //     }
+    // })
+}
