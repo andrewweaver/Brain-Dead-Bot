@@ -3,7 +3,8 @@ require('dotenv').config();
 
 export const getRaiderIODetails = async(character, realm = 'Thrall') => {
     try {
-        const request = await fetch(`https://raider.io/api/v1/characters/profile?region=us&realm=${realm.toLowerCase()}&name=${character.toLowerCase()}&fields=raid_progression,mythic_plus_ranks,raid_achievement_curve${getRaidSlugString()}}`);
+        let url = `https://raider.io/api/v1/characters/profile?region=us&realm=${realm.toLowerCase()}&name=${character.toLowerCase()}&fields=raid_progression,mythic_plus_scores_by_season:current,raid_achievement_curve${getRaidSlugString()}`
+        const request = await fetch(url);
         const response = await request.json();
         return response;
     } catch (error) {
