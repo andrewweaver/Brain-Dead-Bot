@@ -1,3 +1,4 @@
+import {getClassColor} from './util/colors'
 const Discord = require("discord.js");
 const fs = require('fs');
 require('dotenv').config()
@@ -42,3 +43,48 @@ Client.on('message', (message) => {
 
 // Start the Discord Bot
 export const startDiscordBot = async () => { await Client.login(DISCORD_BOT_TOKEN); };
+
+// Send the guild application to Discord
+export const sendGuildApplicationToDiscord = async (application) => {
+    const APPLICATION_CHANNEL = process.env.DISCORD_APPLICATION_CHANNEL;
+    try {
+        let channel = await getChannelById(APPLICATION_CHANNEL)
+        if (!channel) throw new Error('Unable to find the Discord channel');
+        const embed = new Discord.MessageEmbed()
+            .setColor('#000000')
+            .setTimestamp()
+        for (let i = 0; i < application.length; i++) {
+            embed.addField( application[i].question, application[i].answer)
+            if (application[i].question == "What class is your main character you are applying with?"){
+                embed.setColor(getClassColor(application[i].answer))
+            }
+        }
+        let message = await channel.send(embed);
+        await message.react("👍");
+        await message.react("👎")
+    } catch (error){
+        console.log(error)
+    }
+}
+
+// Send the guild complaing to Discord
+export const sendGuildComplaintToDiscord = async (complaint) => {
+    const COMPLAINT_CHANNEL = process.env.DISCORD_COMPLAINT_CHANNEL;
+    try {
+        let channel = await getChannelById(COMPLAINT_CHANNEL)
+        if (!channel) throw new Error('Unable to find the Discord channel');
+        const embed = new Discord.MessageEmbed()
+            .setColor('#000000')
+            .setTimestamp()
+        for (let i = 0; i < complaint.length; i++) {
+            embed.addField( complaint[i].question, complaint[i].answer)
+        }
+        await channel.send(embed);
+    } catch (error){
+        console.log(error)
+    }
+}
+
+const getChannelById = async (channelId) => {
+    return await Client.channels.fetch(channelId)
+}
