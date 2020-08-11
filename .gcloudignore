@@ -1,8 +1,0 @@
-# Exclude bin directory
-bin/
-
-# Exclude compiled .js files
-*.js
-
-# Exclude dependencies
-node_modules/
