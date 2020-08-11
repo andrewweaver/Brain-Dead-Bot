@@ -1,7 +1,9 @@
 {
     "compilerOptions": {
-        "target": "es2016",
+        "target": "ESNEXT",
         "module": "commonjs",
+        "lib": [ "ESNEXT" ],
+        "outDir": "bin"
     },
-    "include": [ "*.ts" ]
+    "include": [ "**/*.ts" ]
 }
