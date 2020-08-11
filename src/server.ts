@@ -15,13 +15,13 @@ app.get('/', (req, res) => {
 app.post("/submit-guild-application", async (req, res) => {
     const application = req.body;
     await sendGuildApplicationToDiscord(application);
-    res.send(200)
+    res.sendStatus(200)
 })
 
 app.post("/submit-guild-complaint", async (req, res) => {
     const complaint = req.body;
     await sendGuildComplaintToDiscord(complaint);
-    res.send(200)
+    res.sendStatus(200)
 })
 
 
