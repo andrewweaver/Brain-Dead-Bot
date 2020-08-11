@@ -12,6 +12,7 @@
   "scripts": {
     "build": "tsc -p .",
     "clean": "rimraf bin",
+    "dev": "concurrently \"tsc -w -p .\" \"nodemon bin/index.js\"",
     "start": "npm run build && node bin/index.js"
   },
   "dependencies": {
@@ -20,11 +21,14 @@
     "discord.js": "^12.2.0",
     "express": "^4.17.1",
     "moment": "^2.27.0",
+    "moment-timezone": "^0.5.31",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "@types/node": "^14.0.27",
+    "concurrently": "^5.3.0",
     "dotenv": "^8.2.0",
+    "nodemon": "^2.0.4",
     "rimraf": "^3.0.2",
     "typescript": "^3.9.7"
   }

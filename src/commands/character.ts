@@ -1,7 +1,7 @@
-import { getWoWCharacterDetails, getWoWCharacterImageURL } from '../util/battlenet';
-import { getRaiderIODetails, raids } from '../util/raiderio';
+import { getWoWCharacterDetails, getWoWCharacterImageURL } from '../api/blizzard/battlenet';
+import { getRaiderIODetails, raids } from '../api/raiderio/raiderio';
 import { getClassColor } from '../util/colors'
-const moment = require('moment'); 
+const moment = require('moment-timezone');
 const Discord = require("discord.js");
 
 const DATE_FORMAT = 'MMMM Do YYYY, h:mm a'
@@ -14,10 +14,13 @@ module.exports = {
             let character = await getWoWCharacterDetails(args[0], args[1]);
             let avatar = await getWoWCharacterImageURL(args[0], args[1]);
             let raiderIO = await getRaiderIODetails(args[0], args[1])
+
+            console.info('Battle.net API: ' + JSON.stringify(character))
+            console.info('RaiderIO API: ' + JSON.stringify(raiderIO))
     
             const embed = new Discord.MessageEmbed()
                 .setColor(getClassColor(character.character_class.name))
-                .setAuthor(`${character.name} | ${character.race.name} | ${character.character_class.name}`, 
+                .setAuthor(`${character.name} | <${character.guild.name}>`, 
                     "https://blznav.akamaized.net/img/games/logo-wow-3dd2cfe06df74407.png", 
                     `https://worldofwarcraft.com/en-us/character/us/${character.realm.name.toLowerCase()}/${character.name.toLowerCase()}`)
                 .setThumbnail(avatar.avatar_url)
@@ -58,12 +61,12 @@ const getAchievementDate = (slug, raidAchievements) => {
     for (let i=0; i < raidAchievements.length; i++){
         if (raidAchievements[i].raid === slug){
             if (raidAchievements[i].cutting_edge) {
-                let achievement = moment(raidAchievements[i].cutting_edge).format(DATE_FORMAT)
+                let achievement = moment.utc(raidAchievements[i].cutting_edge).tz("America/New_York").format(DATE_FORMAT)
                 return ` **[CE]** - *${achievement}*`;
             }
                 
             if (raidAchievements[i].aotc) {
-                let achievement = moment(raidAchievements[i].aotc).format(DATE_FORMAT)
+                let achievement = moment.utc(raidAchievements[i].aotc).tz("America/New_York").format(DATE_FORMAT)
                 return ` **[AoTC]** - *${achievement}*`;
             }
                 
