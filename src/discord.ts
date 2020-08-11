@@ -73,6 +73,7 @@ export const sendGuildComplaintToDiscord = async (complaint) => {
     try {
         let channel = await getChannelById(COMPLAINT_CHANNEL)
         if (!channel) throw new Error('Unable to find the Discord channel');
+        console.log(JSON.stringify(complaint))
         const embed = new Discord.MessageEmbed()
             .setColor('#000000')
             .setTimestamp()

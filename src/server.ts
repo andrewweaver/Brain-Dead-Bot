@@ -20,7 +20,7 @@ app.post("/submit-guild-application", async (req, res) => {
 
 app.post("/submit-guild-complaint", async (req, res) => {
     const complaint = req.body;
-    await sendGuildApplicationToDiscord(complaint);
+    await sendGuildComplaintToDiscord(complaint);
     res.send(200)
 })
 
