@@ -20,7 +20,7 @@ module.exports = {
     
             const embed = new Discord.MessageEmbed()
                 .setColor(getClassColor(character.character_class.name))
-                .setAuthor(`${character.name} | <${character.guild.name}>`, 
+                .setAuthor(`${character.name} ${character.guild ? '| <' + character.guild.name + '>' : ''}`, 
                     "https://blznav.akamaized.net/img/games/logo-wow-3dd2cfe06df74407.png", 
                     `https://worldofwarcraft.com/en-us/character/us/${character.realm.name.toLowerCase()}/${character.name.toLowerCase()}`)
                 .setThumbnail(avatar.avatar_url)
@@ -51,6 +51,7 @@ module.exports = {
             message.channel.send(embed);
         }
         catch (error) {
+            console.error(error);
             message.reply("That character doesn't exist on the armory")
         }
 	},
