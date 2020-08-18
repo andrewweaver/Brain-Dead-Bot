@@ -22,12 +22,12 @@ module.exports = {
                 .setColor(getClassColor(character.character_class.name))
                 .setAuthor(`${character.name} ${character.guild ? '| <' + character.guild.name + '>' : ''}`, 
                     "https://blznav.akamaized.net/img/games/logo-wow-3dd2cfe06df74407.png", 
-                    `https://worldofwarcraft.com/en-us/character/us/${character.realm.name.toLowerCase()}/${character.name.toLowerCase()}`)
+                    `https://worldofwarcraft.com/en-us/character/us/${character.realm.slug.toLowerCase()}/${character.name.toLowerCase()}`)
                 .setThumbnail(avatar.avatar_url)
                 .setDescription(
-                    `[Warcraft Logs](https://www.warcraftlogs.com/character/us/${character.realm.name.toLowerCase()}/${character.name.toLowerCase()}) | ` +
-                    `[Raider IO](https://raider.io/characters/us/${character.realm.name.toLowerCase()}/${character.name.toLowerCase()}) | ` +
-                    `[WoW Progress](https://www.wowprogress.com/character/us/${character.realm.name.toLowerCase()}/${character.name.toLowerCase()}) \n` +
+                    `[Warcraft Logs](https://www.warcraftlogs.com/character/us/${character.realm.slug.toLowerCase()}/${character.name.toLowerCase()}) | ` +
+                    `[Raider IO](https://raider.io/characters/us/${character.realm.slug.toLowerCase()}/${character.name.toLowerCase()}) | ` +
+                    `[WoW Progress](https://www.wowprogress.com/character/us/${character.realm.slug.toLowerCase()}/${character.name.toLowerCase()}) \n` +
                     `**Avg. ilvl:** ${character.average_item_level} | **Equipped ilvl:** ${character.equipped_item_level}`
                 )
                 .setTimestamp()

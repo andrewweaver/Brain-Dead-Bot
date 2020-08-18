@@ -34,7 +34,12 @@ Client.on('message', (message) => {
     // Check to see if the command exists
     if (Client.commands.get(command)){
         // Execute the command
-        Client.commands.get(command).execute(message, args);
+        try {
+            Client.commands.get(command).execute(message, args);
+        } catch (error) {
+            message.reply('```' + error + '```');
+        }
+        
     } else {
         // Command doesn't exist, notify message sender of invalid command
         message.reply("I don't recognize that command.");
