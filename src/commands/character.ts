@@ -1,10 +1,8 @@
 import { getWoWCharacterDetails, getWoWCharacterImageURL } from '../api/blizzard/battlenet';
 import { getRaiderIODetails, raids } from '../api/raiderio/raiderio';
 import { getClassColor } from '../util/colors'
-const moment = require('moment-timezone');
+import { getMythicPlusRankings, getAchievementDate } from '../api/raiderio/raiderio'
 const Discord = require("discord.js");
-
-const DATE_FORMAT = 'MMMM Do YYYY, h:mm a'
 
 module.exports = {
 	name: 'character',
@@ -19,10 +17,14 @@ module.exports = {
             console.info('RaiderIO API: ' + JSON.stringify(raiderIO))
     
             const embed = new Discord.MessageEmbed()
-                .setColor(getClassColor(character.character_class.name))
-                .setAuthor(`${character.name} ${character.guild ? '| <' + character.guild.name + '>' : ''}`, 
+                .setColor(
+                    getClassColor(character.character_class.name)
+                )
+                .setAuthor(
+                    `${character.name} ${character.guild ? '| <' + character.guild.name + '>' : ''}`, 
                     "https://blznav.akamaized.net/img/games/logo-wow-3dd2cfe06df74407.png", 
-                    `https://worldofwarcraft.com/en-us/character/us/${character.realm.slug.toLowerCase()}/${character.name.toLowerCase()}`)
+                    `https://worldofwarcraft.com/en-us/character/us/${character.realm.slug.toLowerCase()}/${character.name.toLowerCase()}`
+                )
                 .setThumbnail(avatar.avatar_url)
                 .setDescription(
                     `[Warcraft Logs](https://www.warcraftlogs.com/character/us/${character.realm.slug.toLowerCase()}/${character.name.toLowerCase()}) | ` +
@@ -57,35 +59,3 @@ module.exports = {
 	},
 };
 
-// Get the formatted date for completion of AOTC/CE
-const getAchievementDate = (slug, raidAchievements) => {
-    for (let i=0; i < raidAchievements.length; i++){
-        if (raidAchievements[i].raid === slug){
-            if (raidAchievements[i].cutting_edge) {
-                let achievement = moment.utc(raidAchievements[i].cutting_edge).tz("America/New_York").format(DATE_FORMAT)
-                return ` **[CE]** - *${achievement}*`;
-            }
-                
-            if (raidAchievements[i].aotc) {
-                let achievement = moment.utc(raidAchievements[i].aotc).tz("America/New_York").format(DATE_FORMAT)
-                return ` **[AoTC]** - *${achievement}*`;
-            }
-                
-        }
-    }
-}
-
-// Get the formatted string for RaiderIO mythic plus scores
-const getMythicPlusRankings = (season_rankings) => {
-    let rankingString = `**Overall:** *${season_rankings.scores.all}* `;
-    if (season_rankings.scores.dps > 0) {
-        rankingString += `| **DPS:** *${season_rankings.scores.dps}* `;
-    }
-    if (season_rankings.scores.tank > 0) {
-        rankingString += `| **Tank:** *${season_rankings.scores.tank}* `;
-    }
-    if (season_rankings.scores.healer > 0) {
-        rankingString += `| **Healer:** *${season_rankings.scores.healer}* `;
-    }
-    return rankingString;
-}

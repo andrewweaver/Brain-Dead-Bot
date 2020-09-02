@@ -32,6 +32,10 @@ export const getWoWCharacterDetails = async(character, realm = 'Thrall') => {
     
     try {
         const request = await fetch(`${BATTLENET_BASE_URL}/profile/wow/character/${realm.toLowerCase()}/${character.toLowerCase()}?namespace=profile-us&locale=en_US&access_token=${AUTH_TOKEN}`);
+        if (request.status > 400){
+            AUTH_TOKEN = null;
+            this.getWoWCharacterDetails(character, realm);
+        }
         const response = await request.json();
         return response;
     } catch (error) {
