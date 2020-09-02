@@ -28,7 +28,7 @@ const generateAuthToken = async () => {
 
 export const getWoWCharacterDetails = async(character, realm = 'Thrall') => {
     if (!AUTH_TOKEN)
-        await generateAuthToken();
+        await generateAuthToken(); 
     
     try {
         const request = await fetch(`${BATTLENET_BASE_URL}/profile/wow/character/${realm.toLowerCase()}/${character.toLowerCase()}?namespace=profile-us&locale=en_US&access_token=${AUTH_TOKEN}`);

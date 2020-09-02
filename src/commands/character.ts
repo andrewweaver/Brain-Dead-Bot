@@ -5,7 +5,7 @@ import { getMythicPlusRankings, getAchievementDate } from '../api/raiderio/raide
 const Discord = require("discord.js");
 
 module.exports = {
-	name: 'character',
+	name: ['character', 'char' ],
 	description: 'Get details about a WoW character',
 	async execute(message, args) {
         try {

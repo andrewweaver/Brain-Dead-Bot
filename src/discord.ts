@@ -15,7 +15,15 @@ Client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync(__dirname + '/commands').filter(file => file.endsWith('.js'));
 for (const file of commandFiles){
     const command = require(`./commands/${file}`);
-    Client.commands.set(command.name, command)
+    if (Array.isArray(command.name)){
+        let commands = command.name;
+        commands.forEach(prefix => {
+            console.log(prefix)
+            Client.commands.set(prefix, command)
+        });
+    } else {
+        Client.commands.set(command.name, command)
+    }
 }
 
 // When the Discord bot is started, print confirmation message
