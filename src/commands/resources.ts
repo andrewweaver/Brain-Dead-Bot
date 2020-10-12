@@ -6,7 +6,7 @@ module.exports = {
             '**Spreadsheet:** https://shorturl.at/enzBF \n' +
             '**Warcraft Logs:** https://shorturl.at/iCJKL \n' +
             '**Application:** https://shorturl.at/nxGIX \n' +
-            '**Complaints:** https://shorturl.at/bdoGM ';
+            '**Complaints:** https://shorturl.at/bdoGM '
         );
     },
 };
