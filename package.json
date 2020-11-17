@@ -13,7 +13,8 @@
     "build": "tsc -p .",
     "clean": "rimraf bin",
     "dev": "concurrently \"tsc -w -p .\" \"nodemon bin/index.js\"",
-    "start": "npm run build && node bin/index.js"
+    "start": "npm run build && node bin/index.js",
+    "cp":"cp -r src/commands/imgs bin/commands/imgs"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
