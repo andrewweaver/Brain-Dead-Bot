@@ -5,7 +5,7 @@ module.exports = {
 	execute(message, args) {
 		const messages = [
 			'Peter is a pretty fucking cool guy.',
-			'https://cdn.discordapp.com/attachments/528397748626653184/778284606176624670/20200711_151115.gif'
+			'https://imgur.com/BsMx8AT'
 		]
 		message.channel.send(messages[getRandomInt(messages.length)]);
 	},
