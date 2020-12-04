@@ -33,8 +33,17 @@ Client.once('ready', () => {
 
 // Handle all of the message requests from Discord
 Client.on('message', (message) => {
-    if (!message.content.startsWith(BOT_COMMAND_PREFIX) || message.author.bot) return;
-
+    if (!message.content.startsWith(BOT_COMMAND_PREFIX)) {
+        if (message.author.bot) return;
+      
+        //138809921528528896
+        if (message.author.id == 138809921528528896){
+            const emoji = message.guild.emojis.cache.find(emoji => emoji.name === 'rye');
+            message.react(emoji)
+        }
+       
+        return;
+    }
     // Destructure the message into a command and it's arguments
     const args = message.content.slice(BOT_COMMAND_PREFIX.length).trim().split(/ +/);
     const command = args.shift().toLowerCase();
