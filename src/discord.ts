@@ -35,6 +35,8 @@ Client.once('ready', () => {
 Client.on('message', (message) => {
     if (!message.content.startsWith(BOT_COMMAND_PREFIX)) {
         if (message.author.bot) return;
+
+        console.log(message.content)
       
         //138809921528528896
         if (message.author.id == 136615654701793280){
@@ -44,6 +46,10 @@ Client.on('message', (message) => {
                     console.log(error)
                     message.delete();
                 })
+            if (message.content.includes("<@!136615654701793280>")){
+                message.delete();
+                message.reply('You cannot ping that person, they are too important for you.')
+            }
         }
         return;
     }
