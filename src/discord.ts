@@ -35,10 +35,9 @@ Client.once('ready', () => {
 Client.on('message', (message) => {
     if (!message.content.startsWith(BOT_COMMAND_PREFIX)) {
         if (message.author.bot) return;
-
-        // console.log(message.content)
       
-        // //138809921528528896
+        // Troll Rye
+        // 138809921528528896
         // if (message.author.id == 138809921528528896){
         //     const emoji = message.guild.emojis.cache.find(emoji => emoji.name === 'rye');
         //     message.react(emoji)
@@ -50,6 +49,19 @@ Client.on('message', (message) => {
         //         message.delete();
         //         message.reply('You cannot ping that person, they are too important for you.')
         //     }
+        // }
+
+        // Troll Luke
+        // if (message.author.id == 136615654701793280){
+        //     const z = message.guild.emojis.cache.find(emoji => emoji.name === 'regional_indicator_z');
+        //     const i = message.guild.emojis.cache.find(emoji => emoji.name === 'regional_indicator_i');
+        //     const n = message.guild.emojis.cache.find(emoji => emoji.name === 'regional_indicator_n');
+        //     const g = message.guild.emojis.cache.find(emoji => emoji.name === 'regional_indicator_g');
+        //     message.react(z)
+        //         .then(message.react(i)
+        //         .then(message.react(n)
+        //         .then(message.react(g)
+        //     )));
         // }
         return;
     }
