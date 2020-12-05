@@ -39,7 +39,7 @@ Client.on('message', (message) => {
         console.log(message.content)
       
         //138809921528528896
-        if (message.author.id == 136615654701793280){
+        if (message.author.id == 138809921528528896){
             const emoji = message.guild.emojis.cache.find(emoji => emoji.name === 'rye');
             message.react(emoji)
                 .catch((error) => {
