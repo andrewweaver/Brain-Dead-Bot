@@ -36,21 +36,21 @@ Client.on('message', (message) => {
     if (!message.content.startsWith(BOT_COMMAND_PREFIX)) {
         if (message.author.bot) return;
 
-        console.log(message.content)
+        // console.log(message.content)
       
-        //138809921528528896
-        if (message.author.id == 138809921528528896){
-            const emoji = message.guild.emojis.cache.find(emoji => emoji.name === 'rye');
-            message.react(emoji)
-                .catch((error) => {
-                    console.log(error)
-                    message.delete();
-                })
-            if (message.content.includes("<@!136615654701793280>")){
-                message.delete();
-                message.reply('You cannot ping that person, they are too important for you.')
-            }
-        }
+        // //138809921528528896
+        // if (message.author.id == 138809921528528896){
+        //     const emoji = message.guild.emojis.cache.find(emoji => emoji.name === 'rye');
+        //     message.react(emoji)
+        //         .catch((error) => {
+        //             console.log(error)
+        //             message.delete();
+        //         })
+        //     if (message.content.includes("<@!136615654701793280>")){
+        //         message.delete();
+        //         message.reply('You cannot ping that person, they are too important for you.')
+        //     }
+        // }
         return;
     }
     // Destructure the message into a command and it's arguments
