@@ -1,4 +1,5 @@
 import {getClassColor} from './util/colors'
+import { CLIENT_RENEG_LIMIT } from 'tls';
 const Discord = require("discord.js");
 const fs = require('fs');
 require('dotenv').config()
@@ -53,15 +54,14 @@ Client.on('message', (message) => {
 
         // Troll Luke
         // if (message.author.id == 136615654701793280){
-        //     const z = message.guild.emojis.cache.find(emoji => emoji.name === 'regional_indicator_z');
-        //     const i = message.guild.emojis.cache.find(emoji => emoji.name === 'regional_indicator_i');
-        //     const n = message.guild.emojis.cache.find(emoji => emoji.name === 'regional_indicator_n');
-        //     const g = message.guild.emojis.cache.find(emoji => emoji.name === 'regional_indicator_g');
+        //     const z = Client.emojis.cache.find(emoji => emoji.name === 'z');
+        //     const i = Client.emojis.cache.find(emoji => emoji.name === 'i');
+        //     const n = Client.emojis.cache.find(emoji => emoji.name === 'n');
+        //     const g = Client.emojis.cache.find(emoji => emoji.name === 'g');
         //     message.react(z)
-        //         .then(message.react(i)
-        //         .then(message.react(n)
-        //         .then(message.react(g)
-        //     )));
+        //     message.react(i)
+        //     message.react(n)
+        //     message.react(g)
         // }
         return;
     }
