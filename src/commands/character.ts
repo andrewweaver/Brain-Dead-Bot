@@ -38,7 +38,7 @@ module.exports = {
                 embed.addField("\u200b", "Current Progression");
                 embed.addField('Castle Nathria', raiderIO.raid_progression['castle-nathria'].summary)
                 
-                embed.addField('\u200b', 'Historical Progression');
+                embed.addField('\u200b', 'Raid Achievements');
 
                 // Add Raid history
                 raiderIO.raid_achievement_curve.forEach(raid => {
