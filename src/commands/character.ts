@@ -1,7 +1,7 @@
 import { getWoWCharacterDetails, getWoWCharacterImageURL } from '../api/blizzard/battlenet';
 import { getRaiderIODetails, raids } from '../api/raiderio/raiderio';
 import { getClassColor } from '../util/colors'
-import { getMythicPlusRankings, getAchievementDate } from '../api/raiderio/raiderio'
+import { getMythicPlusRankings, getAchievementDate, getPrettyRaidName } from '../api/raiderio/raiderio'
 const Discord = require("discord.js");
 
 module.exports = {
@@ -34,15 +34,18 @@ module.exports = {
                 )
                 .setTimestamp()
 
+                // Add Current Progression
+                embed.addField("\u200b", "Current Progression");
+                embed.addField('Castle Nathria', raiderIO.raid_progression['castle-nathria'].summary)
+                
+                embed.addField('\u200b', 'Historical Progression');
+
                 // Add Raid history
-                raids.forEach(raid => {
-                    let achievement = getAchievementDate(raid.slug, raiderIO.raid_achievement_curve)
-                    if (achievement) {
-                        embed.addField(raid.name, `${raiderIO.raid_progression[raid.slug].summary} - ${getAchievementDate(raid.slug, raiderIO.raid_achievement_curve)}`);
-                    } else {
-                        embed.addField(raid.name, `${raiderIO.raid_progression[raid.slug].summary}`);
-                    }
+                raiderIO.raid_achievement_curve.forEach(raid => {
+                    embed.addField(getPrettyRaidName(raid.raid), getAchievementDate(raid.raid, raiderIO.raid_achievement_curve))
                 })
+
+              
 
                 // Add current mythic plus numbers
                 if (raiderIO.mythic_plus_scores_by_season.length > 0){

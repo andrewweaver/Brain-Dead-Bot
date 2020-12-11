@@ -55,6 +55,15 @@ export const getMythicPlusRankings = (season_rankings) => {
         rankingString += `| **Healer:** *${season_rankings.scores.healer}* `;
     }
     return rankingString;
+
+}
+
+export const getPrettyRaidName = (slug) => {
+    for (var i=0; i<raids.length; i++){
+        if (raids[i].slug == slug){
+            return raids[i].name;
+        } 
+    }
 }
 
 export const raids = [
@@ -62,5 +71,6 @@ export const raids = [
     { name: "Crucible of Storms", slug: "crucible-of-storms" },
     { name: "Battle of Dazar'alor", slug: "battle-of-dazaralor" },
     { name: "The Eternal Palace", slug: "the-eternal-palace" },
-    { name: "Ny'alotha the Waking City", slug: "nyalotha-the-waking-city"}
+    { name: "Ny'alotha the Waking City", slug: "nyalotha-the-waking-city"},
+    { name: "Castle Nathria", slug: "castle-nathria"}
 ]
