@@ -46,10 +46,10 @@ module.exports = {
                 })
 
               
-
+                embed.addField('\u200b', 'Mythic Dungeons');
                 // Add current mythic plus numbers
                 if (raiderIO.mythic_plus_scores_by_season.length > 0){
-                    embed.addField("Mythic +", getMythicPlusRankings(raiderIO.mythic_plus_scores_by_season[0]))
+                    embed.addField("Raider IO Score", getMythicPlusRankings(raiderIO.mythic_plus_scores_by_season[0]))
                 }
 
             // Send the message
